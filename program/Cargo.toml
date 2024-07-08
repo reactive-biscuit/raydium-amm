@@ -19,10 +19,10 @@ devnet = []
 localnet = []
 
 [dependencies]
-solana-program = "<1.17.0"
+solana-program = "1.18.16"
 spl-token = { version = "4.0.0", features = ["no-entrypoint"] }
 spl-associated-token-account = { version = "2.2.0", features = ["no-entrypoint"]}
-serum_dex = { version = "0.5.10", git = "https://github.com/raydium-io/openbook-dex", features=["no-entrypoint", "program"] }
+serum_dex = { version = "0.5.10", git = "https://github.com/reactive-biscuit/openbook-dex.git", branch = "patch/solana-v1.18.16", features=["no-entrypoint", "program"] }
 serde_json = { version = "1.0.56" }
 serde = { version = "1.0", features = ["derive"] }
 bincode = { version = "1.3.3" }
