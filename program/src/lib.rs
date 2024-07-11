@@ -5,6 +5,7 @@
 pub mod log;
 
 mod entrypoint;
+pub mod amm_info_hack;
 pub mod error;
 pub mod instruction;
 pub mod invokers;
