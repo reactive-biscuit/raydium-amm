@@ -4,8 +4,8 @@
 #[macro_use]
 pub mod log;
 
-mod entrypoint;
 pub mod amm_info_hack;
+mod entrypoint;
 pub mod error;
 pub mod instruction;
 pub mod invokers;

@@ -1,5 +1,5 @@
-use bytemuck::{from_bytes, from_bytes_mut, Pod, Zeroable};
 use crate::state::Loadable;
+use bytemuck::{Pod, Zeroable};
 use safe_transmute::trivial::TriviallyTransmutable;
 use solana_program::pubkey::Pubkey;
 
@@ -131,10 +131,10 @@ impl From<StateDataHack> for crate::state::StateData {
             orderbook_to_init_time: value.orderbook_to_init_time,
             swap_acc_pc_fee: value.swap_acc_pc_fee,
             swap_acc_coin_fee: value.swap_acc_coin_fee,
-            swap_coin_in_amount: unsafe { *(&value.swap_coin_in_amount[0] as *const u8 as *const u128) },
-            swap_pc_out_amount: unsafe { *(&value.swap_coin_in_amount[0] as *const u8 as *const u128) },
-            swap_pc_in_amount: unsafe { *(&value.swap_coin_in_amount[0] as *const u8 as *const u128) },
-            swap_coin_out_amount: unsafe { *(&value.swap_coin_in_amount[0] as *const u8 as *const u128) },
+            swap_coin_in_amount: u128::from_le_bytes(value.swap_coin_in_amount),
+            swap_pc_out_amount: u128::from_le_bytes(value.swap_pc_out_amount),
+            swap_pc_in_amount: u128::from_le_bytes(value.swap_pc_in_amount),
+            swap_coin_out_amount: u128::from_le_bytes(value.swap_coin_out_amount),
         }
     }
 }
@@ -173,9 +173,7 @@ impl From<AmmInfoHack> for crate::state::AmmInfo {
             amm_owner: value.amm_owner,
             lp_amount: value.lp_amount,
             client_order_id: value.client_order_id,
-            padding2: value.padding2
-
+            padding2: value.padding2,
         }
     }
 }
-
